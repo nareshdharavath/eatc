@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 920" font-family="Segoe UI, Arial, sans-serif" font-size="12">
+  <style>
+    .cls { fill:#ffffff; stroke:#2c3e50; stroke-width:1.5; }
+    .hdr { fill:#34495e; }
+    .enm { fill:#5d6d7e; }
+    .title { fill:#ffffff; font-weight:bold; font-size:13px; }
+    .stereo { fill:#d5dbdb; font-style:italic; font-size:10px; }
+    .mem { fill:#1c2833; font-size:11px; }
+    .sep { stroke:#85929e; stroke-width:1; }
+    .rel { stroke:#2c3e50; stroke-width:1.5; fill:none; }
+    .lbl { fill:#34495e; font-size:11px; }
+    .mult { fill:#7b241c; font-size:10px; }
+  </style>
+
+  <rect x="0" y="0" width="1180" height="920" fill="#f4f6f7"/>
+  <text x="590" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c2833">EATC Booking System — UML Class Diagram</text>
+
+  <!-- BookingService -->
+  <g>
+    <rect class="cls" x="430" y="60" width="320" height="226"/>
+    <rect class="hdr" x="430" y="60" width="320" height="24"/>
+    <text class="title" x="590" y="77" text-anchor="middle">BookingService</text>
+    <line class="sep" x1="430" y1="84" x2="750" y2="84"/>
+    <text class="mem" x="438" y="100">- students : Map&lt;String, Student&gt;</text>
+    <text class="mem" x="438" y="116">- lessons : Map&lt;String, Lesson&gt;</text>
+    <text class="mem" x="438" y="132">- bookings : Map&lt;String, Booking&gt;</text>
+    <line class="sep" x1="430" y1="142" x2="750" y2="142"/>
+    <text class="mem" x="438" y="158">+ registerStudent(Student)</text>
+    <text class="mem" x="438" y="174">+ addLesson(Lesson)</text>
+    <text class="mem" x="438" y="190">+ book(Student, Lesson) : Booking</text>
+    <text class="mem" x="438" y="206">+ changeBooking(Booking, Lesson)</text>
+    <text class="mem" x="438" y="222">+ cancelBooking(Booking)</text>
+    <text class="mem" x="438" y="238">+ checkIn(Booking)</text>
+    <text class="mem" x="438" y="254">+ reviewLesson(Booking, String, int) : Review</text>
+    <text class="mem" x="438" y="270">+ studentsPerLessonReport() : List / + highestIncomeSubject()</text>
+  </g>
+
+  <!-- Student -->
+  <g>
+    <rect class="cls" x="40" y="360" width="250" height="170"/>
+    <rect class="hdr" x="40" y="360" width="250" height="24"/>
+    <text class="title" x="165" y="377" text-anchor="middle">Student</text>
+    <line class="sep" x1="40" y1="384" x2="290" y2="384"/>
+    <text class="mem" x="48" y="400">- id : String</text>
+    <text class="mem" x="48" y="416">- name : String</text>
+    <text class="mem" x="48" y="432">- gender : Gender</text>
+    <text class="mem" x="48" y="448">- dateOfBirth : LocalDate</text>
+    <text class="mem" x="48" y="464">- address : String</text>
+    <text class="mem" x="48" y="480">- emergencyContact : String</text>
+    <line class="sep" x1="40" y1="490" x2="290" y2="490"/>
+    <text class="mem" x="48" y="506">+ getId() : String</text>
+    <text class="mem" x="48" y="522">+ getName() : String</text>
+  </g>
+
+  <!-- Lesson -->
+  <g>
+    <rect class="cls" x="465" y="360" width="250" height="200"/>
+    <rect class="hdr" x="465" y="360" width="250" height="24"/>
+    <text class="title" x="590" y="377" text-anchor="middle">Lesson</text>
+    <line class="sep" x1="465" y1="384" x2="715" y2="384"/>
+    <text class="mem" x="473" y="400">+ MAX_CAPACITY : int = 4</text>
+    <text class="mem" x="473" y="416">- id : String</text>
+    <text class="mem" x="473" y="432">- subject : Subject</text>
+    <text class="mem" x="473" y="448">- weekend : int</text>
+    <text class="mem" x="473" y="464">- day : Day</text>
+    <text class="mem" x="473" y="480">- timeSlot : TimeSlot</text>
+    <line class="sep" x1="465" y1="490" x2="715" y2="490"/>
+    <text class="mem" x="473" y="506">+ getOccupancy() : int</text>
+    <text class="mem" x="473" y="522">+ hasSpace() : boolean</text>
+    <text class="mem" x="473" y="538">+ clashesWith(Lesson) : boolean</text>
+    <text class="mem" x="473" y="554">+ addBooking(Booking) / + addReview(Review)</text>
+  </g>
+
+  <!-- Booking -->
+  <g>
+    <rect class="cls" x="800" y="360" width="250" height="186"/>
+    <rect class="hdr" x="800" y="360" width="250" height="24"/>
+    <text class="title" x="925" y="377" text-anchor="middle">Booking</text>
+    <line class="sep" x1="800" y1="384" x2="1050" y2="384"/>
+    <text class="mem" x="808" y="400">- id : String</text>
+    <text class="mem" x="808" y="416">- student : Student</text>
+    <text class="mem" x="808" y="432">- lesson : Lesson</text>
+    <text class="mem" x="808" y="448">- status : BookingStatus</text>
+    <text class="mem" x="808" y="464">- review : Review</text>
+    <line class="sep" x1="800" y1="474" x2="1050" y2="474"/>
+    <text class="mem" x="808" y="490">+ getStatus() : BookingStatus</text>
+    <text class="mem" x="808" y="506">+ setStatus(BookingStatus)</text>
+    <text class="mem" x="808" y="522">+ isActive() : boolean</text>
+    <text class="mem" x="808" y="538">+ getReview() : Review</text>
+  </g>
+
+  <!-- Review -->
+  <g>
+    <rect class="cls" x="800" y="630" width="250" height="150"/>
+    <rect class="hdr" x="800" y="630" width="250" height="24"/>
+    <text class="title" x="925" y="647" text-anchor="middle">Review</text>
+    <line class="sep" x1="800" y1="654" x2="1050" y2="654"/>
+    <text class="mem" x="808" y="670">+ MIN_RATING : int = 1</text>
+    <text class="mem" x="808" y="686">+ MAX_RATING : int = 5</text>
+    <text class="mem" x="808" y="702">- student : Student</text>
+    <text class="mem" x="808" y="718">- comment : String</text>
+    <text class="mem" x="808" y="734">- rating : int</text>
+    <line class="sep" x1="800" y1="744" x2="1050" y2="744"/>
+    <text class="mem" x="808" y="760">+ getRating() : int</text>
+  </g>
+
+  <!-- Enums -->
+  <g>
+    <rect class="cls" x="40" y="630" width="170" height="120"/>
+    <rect class="enm" x="40" y="630" width="170" height="36"/>
+    <text class="stereo" x="125" y="646" text-anchor="middle">«enumeration»</text>
+    <text class="title" x="125" y="660" text-anchor="middle">Subject</text>
+    <line class="sep" x1="40" y1="666" x2="210" y2="666"/>
+    <text class="mem" x="48" y="684">ENGLISH (£25)</text>
+    <text class="mem" x="48" y="700">MATH (£30)</text>
+    <text class="mem" x="48" y="716">VERBAL_REASONING (£28)</text>
+    <text class="mem" x="48" y="732">NON_VERBAL_REASONING (£32)</text>
+  </g>
+
+  <g>
+    <rect class="cls" x="245" y="630" width="135" height="92"/>
+    <rect class="enm" x="245" y="630" width="135" height="36"/>
+    <text class="stereo" x="312" y="646" text-anchor="middle">«enumeration»</text>
+    <text class="title" x="312" y="660" text-anchor="middle">BookingStatus</text>
+    <line class="sep" x1="245" y1="666" x2="380" y2="666"/>
+    <text class="mem" x="253" y="684">BOOKED</text>
+    <text class="mem" x="253" y="700">ATTENDED</text>
+    <text class="mem" x="253" y="716">CANCELLED</text>
+  </g>
+
+  <g>
+    <rect class="cls" x="410" y="630" width="120" height="92"/>
+    <rect class="enm" x="410" y="630" width="120" height="36"/>
+    <text class="stereo" x="470" y="646" text-anchor="middle">«enumeration»</text>
+    <text class="title" x="470" y="660" text-anchor="middle">Day / TimeSlot</text>
+    <line class="sep" x1="410" y1="666" x2="530" y2="666"/>
+    <text class="mem" x="418" y="684">SATURDAY / SUNDAY</text>
+    <text class="mem" x="418" y="700">MORNING /</text>
+    <text class="mem" x="418" y="716">AFTERNOON</text>
+  </g>
+
+  <g>
+    <rect class="cls" x="560" y="630" width="120" height="76"/>
+    <rect class="enm" x="560" y="630" width="120" height="36"/>
+    <text class="stereo" x="620" y="646" text-anchor="middle">«enumeration»</text>
+    <text class="title" x="620" y="660" text-anchor="middle">Gender</text>
+    <line class="sep" x1="560" y1="666" x2="680" y2="666"/>
+    <text class="mem" x="568" y="684">MALE / FEMALE</text>
+    <text class="mem" x="568" y="700">OTHER</text>
+  </g>
+
+  <!-- Relationships -->
+  <!-- Service -> Student (manages) -->
+  <path class="rel" d="M 470 286 L 200 360"/>
+  <text class="lbl" x="300" y="318">manages</text>
+  <text class="mult" x="210" y="352">*</text>
+
+  <!-- Service -> Lesson -->
+  <path class="rel" d="M 590 286 L 590 360"/>
+  <text class="lbl" x="598" y="324">manages</text>
+  <text class="mult" x="575" y="354">*</text>
+
+  <!-- Service -> Booking -->
+  <path class="rel" d="M 710 286 L 900 360"/>
+  <text class="lbl" x="800" y="318">manages</text>
+  <text class="mult" x="885" y="354">*</text>
+
+  <!-- Booking -> Student (filled diamond aggregation on Booking side) -->
+  <path class="rel" d="M 800 420 L 290 440"/>
+  <text class="lbl" x="520" y="424">books</text>
+  <text class="mult" x="300" y="436">1</text>
+  <text class="mult" x="780" y="414">*</text>
+
+  <!-- Booking -> Lesson -->
+  <path class="rel" d="M 800 432 L 715 448"/>
+  <text class="mult" x="725" y="444">1</text>
+
+  <!-- Lesson -> Booking (composition: lesson holds bookings) -->
+  <path class="rel" d="M 715 470 L 800 470" stroke-dasharray="0"/>
+  <polygon points="715,470 727,464 739,470 727,476" fill="#2c3e50"/>
+  <text class="lbl" x="745" y="464">holds 0..4</text>
+
+  <!-- Booking -> Review -->
+  <path class="rel" d="M 925 546 L 925 630"/>
+  <text class="lbl" x="933" y="590">has 0..1</text>
+
+  <!-- Lesson -> Review -->
+  <path class="rel" d="M 715 520 L 800 690"/>
+  <text class="lbl" x="745" y="610">collects *</text>
+
+  <text x="40" y="880" fill="#566573" font-size="11">Notation: solid line = association; filled diamond = composition; * = many, 1 = one, 0..4 / 0..1 = bounded multiplicity.</text>
+  <text x="40" y="898" fill="#566573" font-size="11">BookingService is the controller that owns the registries and enforces all booking rules; the model classes hold state and local invariants.</text>
+</svg>
